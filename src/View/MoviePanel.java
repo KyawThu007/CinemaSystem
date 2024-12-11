@@ -263,7 +263,7 @@ public class MoviePanel extends javax.swing.JPanel {
         dialog.getContentPane().add(new AddMovieDialog(dialog));
 
         // Set up custom close behavior
-        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         // Show the JDialog
         dialog.setVisible(true);

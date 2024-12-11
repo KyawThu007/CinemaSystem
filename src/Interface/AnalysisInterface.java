@@ -25,4 +25,5 @@ public interface AnalysisInterface {
 
     public DefaultCategoryDataset getOnlyExpenseAnalysis(int cinema_id, int year, String[] monthList);
 
+    public DefaultCategoryDataset getFeedbackAnalysis(int id);
 }

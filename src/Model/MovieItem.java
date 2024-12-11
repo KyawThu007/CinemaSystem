@@ -9,6 +9,7 @@ import Controller.ShowImp;
 import View.AddShowDialog;
 import View.EditMovieDialog;
 import View.MoviePanel;
+import View.ShowViewDialog;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -83,6 +84,7 @@ public class MovieItem extends JPanel {
         imageLabel.setMinimumSize(new java.awt.Dimension(250, 350));
         imageLabel.setOpaque(true);
         imageLabel.setPreferredSize(new java.awt.Dimension(250, 350));
+        
         cardPanel.add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(java.awt.Color.black);
@@ -179,15 +181,18 @@ public class MovieItem extends JPanel {
         // Create a JPopupMenu
         JPopupMenu popupMenu = new JPopupMenu();
         // Add menu items to the popup menu
+        JMenuItem viewItem = new JMenuItem("View");
         JMenuItem incomeItem = new JMenuItem("Income");
         JMenuItem editItem = new JMenuItem("Edit");
         JMenuItem deleteItem = new JMenuItem("Delete");
 
+        viewItem.addActionListener(e -> handleViewItemClick());
         incomeItem.addActionListener(e -> handleIncomeItemClick());
         editItem.addActionListener(e -> handleEditItemClick());
         deleteItem.addActionListener(e -> handleDeleteItemClick());
 
         if (control.equals("Manage")) {
+            popupMenu.add(viewItem);
             popupMenu.add(incomeItem);
             popupMenu.add(editItem);
             popupMenu.add(deleteItem);
@@ -216,6 +221,7 @@ public class MovieItem extends JPanel {
         });
         addShowBtn.addActionListener(e -> handleAddRoomClick());
         trailerBtn.addActionListener(e -> handleTrailerClick());
+  
     }
 
     private void handleAddRoomClick() {
@@ -225,13 +231,30 @@ public class MovieItem extends JPanel {
     private void handleTrailerClick() {
         openInBrowser(movie.getTrailer_url());
     }
-
+    
+    private void handleViewItemClick(){
+        viewAction();
+    }
     private void handleIncomeItemClick() {
         incomeAction();
     }
 
     private void handleEditItemClick() {
         editDetailAction();
+    }
+    
+    private void viewAction(){
+        JDialog dialog = new JDialog((JFrame) null, "", true);
+        dialog.setSize(750, 500);
+        dialog.setLocationRelativeTo(null); // Center the dialog
+
+        dialog.getContentPane().add(new ShowViewDialog(dialog, movie.getId()));
+
+        // Set up custom close behavior
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        // Show the JDialog
+        dialog.setVisible(true);
     }
 
     private void incomeAction() {
@@ -300,7 +323,7 @@ public class MovieItem extends JPanel {
         dialog.getContentPane().add(new EditMovieDialog(dialog, movie.getId()));
 
         // Set up custom close behavior
-        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         // Show the JDialog
         dialog.setVisible(true);
