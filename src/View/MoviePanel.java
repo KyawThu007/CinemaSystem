@@ -10,6 +10,7 @@ import Model.MovieItem;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -255,18 +256,21 @@ public class MoviePanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void addMovieAction() {
-        // Create and configure the JDialog
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) screenSize.getWidth();
+        int height = (int) screenSize.getHeight();
         JDialog dialog = new JDialog((JFrame) null, "", true);
-        dialog.setSize(1130, 500);
+        dialog.setSize(width, height);
         dialog.setLocationRelativeTo(null); // Center the dialog
 
         dialog.getContentPane().add(new AddMovieDialog(dialog));
 
         // Set up custom close behavior
-        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
         // Show the JDialog
         dialog.setVisible(true);
+        //JOptionPane.showConfirmDialog(null,width+","+height);
 
     }
 

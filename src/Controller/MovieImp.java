@@ -29,21 +29,22 @@ public class MovieImp implements MovieInterface {
         try {
 
             con = new DatabaseConnection().getConnection();
-            String query = "insert into movie(id,image,title,genre,director,cast,duration,language"
-                    + ",release_date,trailer_url,display,detail) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            String query = "insert into movie(id,image,cover_image,title,genre,director,cast,duration,language"
+                    + ",release_date,trailer_url,display,detail) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, movie.getId());
             ps.setString(2, movie.getImage());
-            ps.setString(3, movie.getTitle());
-            ps.setString(4, movie.getGenre());
-            ps.setString(5, movie.getDirector());
-            ps.setString(6, movie.getCast());
-            ps.setString(7, movie.getDuration());
-            ps.setString(8, movie.getLanguage());
-            ps.setString(9, movie.getRelease_date());
-            ps.setString(10, movie.getTrailer_url());
-            ps.setString(11, movie.getDisplay());
-            ps.setString(12, movie.getDetail());
+            ps.setString(3, movie.getCover_image());
+            ps.setString(4, movie.getTitle());
+            ps.setString(5, movie.getGenre());
+            ps.setString(6, movie.getDirector());
+            ps.setString(7, movie.getCast());
+            ps.setString(8, movie.getDuration());
+            ps.setString(9, movie.getLanguage());
+            ps.setString(10, movie.getRelease_date());
+            ps.setString(11, movie.getTrailer_url());
+            ps.setString(12, movie.getDisplay());
+            ps.setString(13, movie.getDetail());
             n = ps.executeUpdate();
             con.close();
         } catch (SQLException e) {
@@ -57,21 +58,22 @@ public class MovieImp implements MovieInterface {
     public void updateMovie(Movie movie) {
         try {
             con = new DatabaseConnection().getConnection();
-            String query = "update movie set image=?,title=?,genre=?,director=?,cast=?,duration=?,language=?"
+            String query = "update movie set image=?,cover_image=?,title=?,genre=?,director=?,cast=?,duration=?,language=?"
                     + ",release_date=?,trailer_url=?,display=?,detail=? where id=?";
             PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, movie.getImage());
-            ps.setString(2, movie.getTitle());
-            ps.setString(3, movie.getGenre());
-            ps.setString(4, movie.getDirector());
-            ps.setString(5, movie.getCast());
-            ps.setString(6, movie.getDuration());
-            ps.setString(7, movie.getLanguage());
-            ps.setString(8, movie.getRelease_date());
-            ps.setString(9, movie.getTrailer_url());
-            ps.setString(10, movie.getDisplay());
-            ps.setString(11, movie.getDetail());
-            ps.setInt(12, movie.getId());
+            ps.setString(2, movie.getCover_image());
+            ps.setString(3, movie.getTitle());
+            ps.setString(4, movie.getGenre());
+            ps.setString(5, movie.getDirector());
+            ps.setString(6, movie.getCast());
+            ps.setString(7, movie.getDuration());
+            ps.setString(8, movie.getLanguage());
+            ps.setString(9, movie.getRelease_date());
+            ps.setString(10, movie.getTrailer_url());
+            ps.setString(11, movie.getDisplay());
+            ps.setString(12, movie.getDetail());
+            ps.setInt(13, movie.getId());
 
             ps.executeUpdate();
             con.close();
@@ -111,6 +113,7 @@ public class MovieImp implements MovieInterface {
                 Movie movie = new Movie();
                 movie.setId(rs.getInt("id"));
                 movie.setImage(rs.getString("image"));
+                movie.setCover_image(rs.getString("cover_image"));
                 movie.setTitle(rs.getString("title"));
                 movie.setGenre(rs.getString("genre"));
                 movie.setDirector(rs.getString("director"));
@@ -150,6 +153,7 @@ public class MovieImp implements MovieInterface {
                 movie = new Movie();
                 movie.setId(rs.getInt("id"));
                 movie.setImage(rs.getString("image"));
+                movie.setCover_image(rs.getString("cover_image"));
                 movie.setTitle(rs.getString("title"));
                 movie.setGenre(rs.getString("genre"));
                 movie.setDirector(rs.getString("director"));

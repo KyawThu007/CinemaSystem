@@ -114,10 +114,11 @@ public class BuySeatImp implements BuySeatInterface {
         return list;
 
     }
+
     @Override
     public BuySeat getBuySeat(int id) {
 
-        BuySeat buySeat=null;
+        BuySeat buySeat = null;
         try {
             con = new DatabaseConnection().getConnection();
             String query = "select * from buySeat where id=?";

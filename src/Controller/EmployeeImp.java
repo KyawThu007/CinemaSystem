@@ -121,6 +121,7 @@ public class EmployeeImp implements EmployeeInterface {
         }
         return list;
     }
+
     @Override
     public Employee getEmployee(int id) {
         Employee employee = null;
@@ -152,6 +153,7 @@ public class EmployeeImp implements EmployeeInterface {
         }
         return employee;
     }
+
     @Override
     public void logMessage(String log) {
         JOptionPane.showMessageDialog(null, log, "", JOptionPane.INFORMATION_MESSAGE);

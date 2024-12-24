@@ -84,7 +84,7 @@ public class MovieItem extends JPanel {
         imageLabel.setMinimumSize(new java.awt.Dimension(250, 350));
         imageLabel.setOpaque(true);
         imageLabel.setPreferredSize(new java.awt.Dimension(250, 350));
-        
+
         cardPanel.add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel1.setBackground(java.awt.Color.black);
@@ -221,7 +221,7 @@ public class MovieItem extends JPanel {
         });
         addShowBtn.addActionListener(e -> handleAddRoomClick());
         trailerBtn.addActionListener(e -> handleTrailerClick());
-  
+
     }
 
     private void handleAddRoomClick() {
@@ -231,10 +231,11 @@ public class MovieItem extends JPanel {
     private void handleTrailerClick() {
         openInBrowser(movie.getTrailer_url());
     }
-    
-    private void handleViewItemClick(){
+
+    private void handleViewItemClick() {
         viewAction();
     }
+
     private void handleIncomeItemClick() {
         incomeAction();
     }
@@ -242,8 +243,8 @@ public class MovieItem extends JPanel {
     private void handleEditItemClick() {
         editDetailAction();
     }
-    
-    private void viewAction(){
+
+    private void viewAction() {
         JDialog dialog = new JDialog((JFrame) null, "", true);
         dialog.setSize(750, 500);
         dialog.setLocationRelativeTo(null); // Center the dialog
@@ -316,14 +317,17 @@ public class MovieItem extends JPanel {
     }
 
     private void editDetailAction() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) screenSize.getWidth();
+        int height = (int) screenSize.getHeight();
         JDialog dialog = new JDialog((JFrame) null, "", true);
-        dialog.setSize(1130, 500);
+        dialog.setSize(width, height);
         dialog.setLocationRelativeTo(null); // Center the dialog
 
         dialog.getContentPane().add(new EditMovieDialog(dialog, movie.getId()));
 
         // Set up custom close behavior
-        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 
         // Show the JDialog
         dialog.setVisible(true);
